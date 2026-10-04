@@ -1,4 +1,5 @@
 {
+  "name": "Seiko Presage Cocktail Time",
   "device": "Huawei Watch GT4",
   "screen": {
     "width": 466,
@@ -12,15 +13,29 @@
   "layers": [
     {
       "name": "background",
-      "type": "image",
-      "file": "assets/processed/bg/background.png",
+      "type": "static_image",
+      "file": "assets/processed/bg/seiko_presage_bg.png",
       "x": 0,
       "y": 0
     },
     {
       "name": "hour_hand",
-      "type": "hand",
-      "file": "assets/processed/hands/hour.png",
+      "type": "hand_hour",
+      "file": "assets/processed/hands/seiko_hour.png",
+      "pivot_x": 233,
+      "pivot_y": 233
+    },
+    {
+      "name": "minute_hand",
+      "type": "hand_minute",
+      "file": "assets/processed/hands/seiko_minute.png",
+      "pivot_x": 233,
+      "pivot_y": 233
+    },
+    {
+      "name": "second_hand",
+      "type": "hand_second",
+      "file": "assets/processed/hands/seiko_second.png",
       "pivot_x": 233,
       "pivot_y": 233
     }
