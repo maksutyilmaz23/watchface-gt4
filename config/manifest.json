@@ -1,43 +1,62 @@
 {
   "name": "Seiko Presage Cocktail Time",
   "device": "Huawei Watch GT4",
-  "screen": {
-    "width": 466,
-    "height": 466,
-    "shape": "circle"
-  },
-  "pivot": {
-    "x": 233,
-    "y": 233
-  },
+  "screen": { "width": 466, "height": 466, "shape": "circle" },
+  "pivot": { "x": 233, "y": 233 },
+  "language": "tr_TR",
   "layers": [
     {
       "name": "background",
       "type": "static_image",
-      "file": "assets/processed/bg/seiko_presage_bg.png",
-      "x": 0,
-      "y": 0
+      "file": "assets/processed/bg/seiko_presage_bg.png"
     },
     {
       "name": "hour_hand",
       "type": "hand_hour",
-      "file": "assets/processed/hands/seiko_hour.png",
-      "pivot_x": 233,
-      "pivot_y": 233
+      "file": "assets/processed/hands/seiko_hour.png"
     },
     {
       "name": "minute_hand",
       "type": "hand_minute",
-      "file": "assets/processed/hands/seiko_minute.png",
-      "pivot_x": 233,
-      "pivot_y": 233
+      "file": "assets/processed/hands/seiko_minute.png"
     },
     {
       "name": "second_hand",
       "type": "hand_second",
-      "file": "assets/processed/hands/seiko_second.png",
-      "pivot_x": 233,
-      "pivot_y": 233
+      "file": "assets/processed/hands/seiko_second.png"
+    }
+  ],
+  "aod_layers": [
+    {
+      "name": "aod_background",
+      "type": "static_image",
+      "file": "assets/processed/bg/seiko_aod_bg.png"
+    },
+    {
+      "name": "aod_date_text",
+      "type": "text_date",
+      "format": "DD MMM EEE",
+      "language": "tr_TR",
+      "x": 358,
+      "y": 233
+    },
+    {
+      "name": "aod_step_text",
+      "type": "text_widget",
+      "data_type": "step_count",
+      "format": "%d ADIM",
+      "x": 233,
+      "y": 343
+    },
+    {
+      "name": "aod_hour_hand",
+      "type": "hand_hour",
+      "file": "assets/processed/hands/seiko_aod_hour.png"
+    },
+    {
+      "name": "aod_minute_hand",
+      "type": "hand_minute",
+      "file": "assets/processed/hands/seiko_aod_minute.png"
     }
   ]
 }
