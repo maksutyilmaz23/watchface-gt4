@@ -25,7 +25,6 @@ os.makedirs("assets/raw/bg", exist_ok=True)
 os.makedirs("assets/raw/hands", exist_ok=True)
 
 def generate_premium_background():
-    # 1. Taban Görseli (4x Süper Sampling ile Kenar Yumuşatma)
     SCALE = 4
     SW, SH = CANVAS_SIZE[0] * SCALE, CANVAS_SIZE[1] * SCALE
     SCENTER = (CENTER[0] * SCALE, CENTER[1] * SCALE)
@@ -42,7 +41,7 @@ def generate_premium_background():
         b_c = int(AMBER_CENTER[2] * (1 - f) + DARK_EDGE[2] * f)
         draw.ellipse([SCENTER[0]-r, SCENTER[1]-r, SCENTER[0]+r, SCENTER[1]+r], fill=(r_c, g_c, b_c, 255))
 
-    # Organic Cocktail Sunburst Dokusu (Fotoğraftaki pütürlü ışık kırılmaları)
+    # Organic Cocktail Sunburst Dokusu
     random.seed(101)
     texture = Image.new("RGBA", (SW, SH), (0, 0, 0, 0))
     t_draw = ImageDraw.Draw(texture)
@@ -79,7 +78,7 @@ def generate_premium_background():
             y2 = SCENTER[1] - r_track_out * cos_a
             draw.line([(x1, y1), (x2, y2)], fill=(160, 115, 90, 180), width=1*SCALE)
 
-    # 3. Fotoğraftaki Birebir Çift Mızrak Sivrisi 3D Kama İndeksler
+    # 3. 3D Kama İndeksler
     def draw_wedge(angle_deg, is_double=False):
         ang = math.radians(angle_deg)
         sin_a, cos_a = math.sin(ang), math.cos(ang)
@@ -107,21 +106,20 @@ def generate_premium_background():
             draw_wedge(355.5, is_double=True)
             draw_wedge(4.5, is_double=True)
         elif i == 4:
-            continue  # Tarih penceresi
+            continue
         else:
             draw_wedge(i * 30)
 
-    # 4. Saat 4:30 Tarih Penceresi & Logolar
+    # 4. Tarih Penceresi & Logolar
     date_ang = math.radians(135)
     date_r = SRADIUS - (58 * SCALE)
     dx = SCENTER[0] + date_r * math.sin(date_ang)
     dy = SCENTER[1] - date_r * math.cos(date_ang)
 
     draw.ellipse([dx-(16*SCALE), dy-(16*SCALE), dx+(16*SCALE), dy+(16*SCALE)], fill=(12, 6, 4, 255), outline=ROSE_GOLD_LIGHT, width=2*SCALE)
-    
-    # Görsel Ölçeklendirme ve Yumuşatma (LANCZOS)
+
     img = img.resize(CANVAS_SIZE, Image.LANCZOS)
-    
+
     draw_final = ImageDraw.Draw(img)
     draw_final.text((dx/SCALE, dy/SCALE), "6", fill=(255, 255, 255, 255), anchor="mm", font_size=15)
     draw_final.text((CENTER[0], CENTER[1] - 78), "SEIKO", fill=SILVER_LOGO, anchor="mm", font_size=23)
@@ -133,21 +131,21 @@ def generate_premium_background():
     print(f"[+] Premium Arka Plan & Kama Çizgileri Oluşturuldu: {RAW_BG}")
 
 def generate_premium_hands():
-    # Dauphine Akrep (3D Fasetli)
+    # Dauphine Akrep
     img_h = Image.new("RGBA", CANVAS_SIZE, (0, 0, 0, 0))
     draw_h = ImageDraw.Draw(img_h)
     draw_h.polygon([(CENTER[0], CENTER[1] - 122), (CENTER[0] - 9, CENTER[1] - 22), (CENTER[0], CENTER[1] + 20)], fill=ROSE_GOLD_LIGHT)
     draw_h.polygon([(CENTER[0], CENTER[1] - 122), (CENTER[0] + 9, CENTER[1] - 22), (CENTER[0], CENTER[1] + 20)], fill=ROSE_GOLD_DARK)
     img_h.save(RAW_HOUR, "PNG")
 
-    # Dauphine Yelkovan (3D Fasetli)
+    # Dauphine Yelkovan (NameError Düzeltildi)
     img_m = Image.new("RGBA", CANVAS_SIZE, (0, 0, 0, 0))
     draw_m = ImageDraw.Draw(img_m)
     draw_m.polygon([(CENTER[0], CENTER[1] - 185), (CENTER[0] - 7, CENTER[1] - 22), (CENTER[0], CENTER[1] + 25)], fill=ROSE_GOLD_LIGHT)
-    draw_m.polygon([(CENTER[0], CENTER[1] - 185), (CENTER[0] + 7, CENTER[1] - 22), (CENTER[0], CENTER[1] + 25)], fill=ROSE_DARK)
+    draw_m.polygon([(CENTER[0], CENTER[1] - 185), (CENTER[0] + 7, CENTER[1] - 22), (CENTER[0], CENTER[1] + 25)], fill=ROSE_GOLD_DARK)
     img_m.save(RAW_MINUTE, "PNG")
 
-    # İnce Saniye İbresi ve Karşı Ağırlık Dairesi
+    # Saniye İbresi
     img_s = Image.new("RGBA", CANVAS_SIZE, (0, 0, 0, 0))
     draw_s = ImageDraw.Draw(img_s)
     draw_s.line([(CENTER[0], CENTER[1] + 42), (CENTER[0], CENTER[1] - 195)], fill=ROSE_GOLD_LIGHT, width=2)
@@ -155,7 +153,7 @@ def generate_premium_hands():
     draw_s.ellipse([CENTER[0]-4, CENTER[1]-4, CENTER[0]+4, CENTER[1]+4], fill=ROSE_GOLD_LIGHT)
     img_s.save(RAW_SECOND, "PNG")
 
-    print("[+] Premium 3D İbreler Oluşturuldu.")
+    print("[+] Premium 3D İbreler Sorunsuz Oluşturuldu.")
 
 if __name__ == "__main__":
     generate_premium_background()
