@@ -1,0 +1,28 @@
+{
+  "device": "Huawei Watch GT4",
+  "screen": {
+    "width": 466,
+    "height": 466,
+    "shape": "circle"
+  },
+  "pivot": {
+    "x": 233,
+    "y": 233
+  },
+  "layers": [
+    {
+      "name": "background",
+      "type": "image",
+      "file": "assets/processed/bg/background.png",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "name": "hour_hand",
+      "type": "hand",
+      "file": "assets/processed/hands/hour.png",
+      "pivot_x": 233,
+      "pivot_y": 233
+    }
+  ]
+}
